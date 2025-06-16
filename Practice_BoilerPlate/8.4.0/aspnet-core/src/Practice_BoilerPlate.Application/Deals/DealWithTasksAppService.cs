@@ -158,24 +158,7 @@ namespace Practice_BoilerPlate.Deals
                 );
             }
 
-            // Sorting functionality (if provided)
-            //if (!string.IsNullOrWhiteSpace(input.SortBy))
-            //{
-            //    if (input.SortBy == "DealName")
-            //    {
-            //        query = input.SortAscending ? query.OrderBy(d => d.DealName) : query.OrderByDescending(d => d.DealName);
-            //    }
-            //    else if (input.SortBy == "Date")
-            //    {
-            //        query = input.SortAscending ? query.OrderBy(d => d.Date) : query.OrderByDescending(d => d.Date);
-            //    }
-            //    // Add more sorting options as needed
-            //}
-            //else
-            //{
-            //    // Default sorting (e.g., by DealDate if not provided)
-            //    query = query.OrderBy(d => d.Date);
-            //}
+     
 
             var totalCount = await query.CountAsync();  // Get total count for pagination
 

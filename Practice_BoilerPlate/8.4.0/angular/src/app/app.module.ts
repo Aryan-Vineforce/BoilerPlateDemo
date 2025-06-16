@@ -86,6 +86,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { DealsServiceComponent } from './deals-service/deals-service.component';
 import { CreateDealDialogComponent } from './deals-service/create-deal/create-deal-dialog.component';
 import { EditDealDialogComponent } from './deals-service/edit-deal/edit-deal-dialog.component';
+import { CurrencyexchangeComponent } from './currencyexchange/currencyexchange.component';
 // NGXS
 
 
@@ -161,6 +162,7 @@ import { EditDealDialogComponent } from './deals-service/edit-deal/edit-deal-dia
         DealsServiceComponent,
         CreateDealDialogComponent,
         EditDealDialogComponent,
+        CurrencyexchangeComponent,
       
       
      
