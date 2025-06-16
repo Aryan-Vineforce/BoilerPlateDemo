@@ -20,7 +20,7 @@ namespace Practice_BoilerPlate.Courses
             _coursesRepository=courserepository;
         }
 
-        public async Task CreateAsync(CreateCourseDto input)
+        public async System.Threading.Tasks.Task CreateAsync(CreateCourseDto input)
         {
             var course = new Course
            {
@@ -36,7 +36,7 @@ namespace Practice_BoilerPlate.Courses
 
         }
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _coursesRepository.DeleteAsync(input.Id);
         }
@@ -70,7 +70,7 @@ namespace Practice_BoilerPlate.Courses
         }
 
 
-        public async Task UpdateAsync(UpdateCourseDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(UpdateCourseDto input)
         {
             var course = await _coursesRepository.GetAsync(input.Id);
             course.Name = input.Name;

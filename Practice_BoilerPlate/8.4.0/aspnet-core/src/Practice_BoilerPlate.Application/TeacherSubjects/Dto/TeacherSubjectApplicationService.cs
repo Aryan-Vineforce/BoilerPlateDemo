@@ -18,7 +18,7 @@ namespace Practice_BoilerPlate.TeacherSubjects.Dto
             _repositoryTeacherSubject = repositoryTeacehrSubject;
         }
 
-        public async Task CreateAsync(TeacherSubjectCreateUpdateDto input)
+        public async System.Threading.Tasks.Task CreateAsync(TeacherSubjectCreateUpdateDto input)
         {
             var teachsub = new TeacherSubject
             {
@@ -30,7 +30,7 @@ namespace Practice_BoilerPlate.TeacherSubjects.Dto
 
         }
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _repositoryTeacherSubject.DeleteAsync(input.Id);
         }
@@ -69,7 +69,7 @@ namespace Practice_BoilerPlate.TeacherSubjects.Dto
         }
 
 
-        public async Task UpdateAsync(TeacherSubjectCreateUpdateDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(TeacherSubjectCreateUpdateDto input)
         {
             var teacherSubject = await _repositoryTeacherSubject.GetAsync(input.Id);
 

@@ -43,88 +43,45 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [
-            new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
             new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
-            new MenuItem(
-                this.l('Roles'),
-                '/app/roles',
-                'fas fa-theater-masks',
-                'Pages.Roles'
-            ),
-            new MenuItem(
-                this.l('Tenants'),
-                '/app/tenants',
-                'fas fa-building',
-                'Pages.Tenants'
-            ),
-            new MenuItem(
-                this.l('Users'),
-                '/app/users',
-                'fas fa-users',
-                'Pages.Users'
-            ),
-            new MenuItem(this.l('Students'), '/app/student', 'fas fa-user-graduate'),
-            new MenuItem(this.l('Departments'), '/app/department', 'fas fa-user-tie'),
-            new MenuItem(this.l('Teachers'), '/app/teacher', 'fas fa-user-tie'),
-            new MenuItem(this.l('Employee'), '/app/employee', 'fas fa-id-badge'),
-            new MenuItem(this.l('Course'), '/app/course', 'fas fa-id-badge'),
-            new MenuItem(this.l('Enrollment'), '/app/enrollment', 'fas fa-id-badge'),
-            new MenuItem(this.l('TeacherSubject'), '/app/teachersubject', 'fas fa-id-badge'),
-            new MenuItem(this.l('subject'), '/app/subject', 'fas fa-id-badge'),
-            new MenuItem(this.l('File Uplaod'), '/app/fileupload', 'fas fa-id-badge'),
-            new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
-                new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetboilerplate.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Templates',
-                        'https://aspnetboilerplate.com/Templates?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Samples',
-                        'https://aspnetboilerplate.com/Samples?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                ]),
-                new MenuItem('ASP.NET Zero', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetzero.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Features',
-                        'https://aspnetzero.com/Features?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Pricing',
-                        'https://aspnetzero.com/Pricing?ref=abptmpl#pricing',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Faq',
-                        'https://aspnetzero.com/Faq?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetzero.com/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    )
-                ])
+            new MenuItem(this.l('Roles'), '/app/roles', 'fas fa-theater-masks', 'Pages.Roles'),
+            new MenuItem(this.l('Tenants'), '/app/tenants', 'fas fa-building', 'Pages.Tenants'),
+            new MenuItem(this.l('Users'), '/app/users', 'fas fa-users', 'Pages.Users'),
+    
+            new MenuItem(this.l('Academics'), '', 'fas fa-circle', '', [
+                new MenuItem(this.l('Course'), '/app/course', 'fas fa-book-open'),
+                new MenuItem(this.l('Subject'), '/app/subject', 'fas fa-book'),
+                new MenuItem(this.l('Enrollment'), '/app/enrollment', 'fas fa-user-plus'),
+                new MenuItem(this.l('TeacherSubject'), '/app/teachersubject', 'fas fa-chalkboard-teacher')
+            ]),
+    
+            new MenuItem(this.l('Staff'), '', 'fas fa-users', '', [
+                new MenuItem(this.l('Departments'), '/app/department', 'fas fa-building'),
+                new MenuItem(this.l('Teachers'), '/app/teacher', 'fas fa-chalkboard-teacher'),
+                new MenuItem(this.l('Employee'), '/app/employee', 'fas fa-user-tie')
+            ]),
+    
+            new MenuItem(this.l('Students'), '', 'fas fa-user-graduate', '', [
+                new MenuItem(this.l('Students'), '/app/student', 'fas fa-user-graduate')
+            ]),
+    
+            new MenuItem(this.l('Utilities'), '', 'fas fa-tools', '', [
+                new MenuItem(this.l('File Upload'), '/app/fileupload', 'fas fa-upload')
+            ]),
+    
+            new MenuItem(this.l('Hospital'), '', 'fas fa-hospital', '', [
+                new MenuItem(this.l('Bed'), '/app/bed', 'fas fa-procedures'),
+                new MenuItem(this.l('Patient'), '/app/patient', 'fas fa-user-injured'),
+                new MenuItem(this.l('Admission'), '/app/admission', 'fas fa-hospital-user'),
+                new MenuItem(this.l('Deals-Service'), '/app/deals-service', 'fas fa-hospital-user')
+            ]),
+             new MenuItem(this.l('Services'), '', 'fas fa-hospital', '', [
+                
+                new MenuItem(this.l('Deals-Service'), '/app/deals-service', 'fas fa-hospital-user')
             ])
         ];
     }
+    
 
     patchMenuItems(items: MenuItem[], parentId?: number): void {
         items.forEach((item: MenuItem, index: number) => {

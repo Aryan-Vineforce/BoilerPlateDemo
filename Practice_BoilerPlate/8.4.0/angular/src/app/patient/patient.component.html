@@ -1,0 +1,248 @@
+<div [@routerTransition]>
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "Patients" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+            <button class="btn bg-blue" (click)="createStudent()">
+              <i class="fa fa-plus-square"></i>
+              {{ "Create" | localize }}
+            </button>
+            <button class="btn btn-success ml-2" (click)="exportToExcel()">
+    <i class="fa fa-file-excel"></i>
+    {{ "ExportToExcel" | localize }}
+  </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="content px-2">
+      <div class="container-fluid">
+        <div class="card">
+          <!-- Nav Tabs -->
+          <div class="card-header p-2">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'list'" (click)="activeTab = 'list'" role="tab">
+                  {{ "PatientList" | localize }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'gender'" (click)="activeTab = 'gender'" role="tab">
+                  {{ "GenderChart" | localize }}
+                </a>
+              </li>
+            </ul>
+          </div>
+  
+          <!-- Filters -->
+          <div *ngIf="activeTab === 'list'" class="p-3 pt-0">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{{ 'SearchWithThreeDot' | localize }}"
+                    [(ngModel)]="keyword" (keyup.enter)="getDataPage(1)" />
+                  <div class="input-group-append">
+                    <button class="btn bg-blue" (click)="getDataPage(1)">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-default" (click)="advancedFiltersVisible = !advancedFiltersVisible">
+                      <i class="fas"
+                        [class.fa-angle-up]="advancedFiltersVisible"
+                        [class.fa-angle-down]="!advancedFiltersVisible"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div *ngIf="advancedFiltersVisible" class="card card-body bg-light border mb-3">
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row mb-0">
+                      <label class="col-md-3 col-form-label">
+                        {{ "IsActive" | localize }}
+                      </label>
+                      <div class="col-md-9 pt-2">
+                        <div class="custom-control custom-radio d-inline">
+                          <input type="radio" class="custom-control-input" id="isActiveAll" name="isActive"
+                            [(ngModel)]="isActive" [value]="undefined" checked />
+                          <label class="custom-control-label" for="isActiveAll">
+                            {{ "All" | localize }}
+                          </label>
+                        </div>
+                        <div class="custom-control custom-radio d-inline mx-3">
+                          <input type="radio" class="custom-control-input" id="isActiveYes" name="isActive"
+                            [(ngModel)]="isActive" [value]="true" />
+                          <label class="custom-control-label" for="isActiveYes">
+                            {{ "Yes" | localize }}
+                          </label>
+                        </div>
+                        <div class="custom-control custom-radio d-inline">
+                          <input type="radio" class="custom-control-input" id="isActiveNo" name="isActive"
+                            [(ngModel)]="isActive" [value]="false" />
+                          <label class="custom-control-label" for="isActiveNo">
+                            {{ "No" | localize }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="text-right mt-3">
+                <button class="btn bg-blue" (click)="getDataPage(1)">
+                  {{ "Search" | localize }}
+                </button>
+                <button class="btn btn-default ml-2" (click)="clearFilters()">
+                  {{ "Clear" | localize }}
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Table Tab -->
+          <div *ngIf="activeTab === 'list'" class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped" [busy]="isTableLoading">
+                <thead class="bg-light">
+                  <tr>
+                    <th (click)="changeSorting('name')" style="cursor: pointer;">
+                      {{ "Name" | localize }}
+                      <i class="ml-1 fas"
+                        [ngClass]="{
+                          'fa-arrow-up text-primary': sorting === 'name asc',
+                          'fa-arrow-down text-primary': sorting === 'name desc',
+                          'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                        }"></i>
+                    </th>
+                    <th (click)="changeSorting('age')" style="cursor: pointer;">
+                      {{ "Age" | localize }}
+                      <i class="ml-1 fas"
+                        [ngClass]="{
+                          'fa-arrow-up text-primary': sorting === 'age asc',
+                          'fa-arrow-down text-primary': sorting === 'age desc',
+                          'fa-sort text-muted': sorting !== 'age asc' && sorting !== 'age desc'
+                        }"></i>
+                    </th>
+                    <th (click)="changeSorting('gender')" style="cursor: pointer;">
+                      {{ "Gender" | localize }}
+                      <i class="ml-1 fas"
+                        [ngClass]="{
+                          'fa-arrow-up text-primary': sorting === 'gender asc',
+                          'fa-arrow-down text-primary': sorting === 'gender desc',
+                          'fa-sort text-muted': sorting !== 'gender asc' && sorting !== 'gender desc'
+                        }"></i>
+                    </th>
+                    <th (click)="changeSorting('disease')" style="cursor: pointer;">
+                      {{ "Disease" | localize }}
+                      <i class="ml-1 fas"
+                        [ngClass]="{
+                          'fa-arrow-up text-primary': sorting === 'disease asc',
+                          'fa-arrow-down text-primary': sorting === 'disease desc',
+                          'fa-sort text-muted': sorting !== 'disease asc' && sorting !== 'disease desc'
+                        }"></i>
+                    </th>
+                    <th (click)="changeSorting('doctor')" style="cursor: pointer;">
+                      {{ "Doctor" | localize }}
+                      <i class="ml-1 fas"
+                        [ngClass]="{
+                          'fa-arrow-up text-primary': sorting === 'doctor asc',
+                          'fa-arrow-down text-primary': sorting === 'doctor desc',
+                          'fa-sort text-muted': sorting !== 'doctor asc' && sorting !== 'doctor desc'
+                        }"></i>
+                    </th>
+                    <th style="width: 220px;">{{ "Actions" | localize }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let patient of patients | paginate : {
+                      id: 'server',
+                      itemsPerPage: pageSize,
+                      currentPage: pageNumber,
+                      totalItems: totalItems
+                    }">
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ getGenderString(patient.gender) }}</td>
+                    <td>{{ patient.disease }}</td>
+                    <td>{{ patient.doctor }}</td>
+                    <td>
+                      <button class="btn btn-sm bg-secondary" (click)="editStudent(patient)">
+                        <i class="fas fa-pencil-alt"></i>
+                        {{ "Edit" | localize }}
+                      </button>
+                      <button class="btn btn-sm bg-danger mx-1" (click)="delete(patient)">
+                        <i class="fas fa-trash"></i>
+                        {{ "Delete" | localize }}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <!-- Footer -->
+          <div *ngIf="activeTab === 'list'" class="card-footer bg-light border-top">
+            <div class="row">
+              <div class="col-sm-4 text-sm-left text-center">
+                <button class="btn btn-secondary" (click)="refresh()">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div>
+              <div class="col-sm-4 text-center">
+                <p class="mb-0 my-2">{{ "TotalRecordsCount" | localize: totalItems }}</p>
+              </div>
+              <div class="col-sm-4">
+                <div class="float-sm-right">
+                  <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
+                  </abp-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Gender Chart Tab -->
+          <div *ngIf="activeTab === 'gender'" class="card-body">
+            <div class="d-flex justify-content-center">
+              <div class="d-flex flex-row justify-content-center flex-wrap gap-4">
+                <!-- Gender Distribution Chart -->
+                <div style="width: 400px;">
+                  <h5 class="text-center">{{ "Patient Gender Distribution" | localize }}</h5>
+                  <div style="max-width: 500px; margin: 10px;">
+                  <canvas baseChart
+                          [datasets]="genderChartData"
+                          [labels]="genderChartLabels"
+                          [options]="genderChartOptions"
+                          [type]="genderChartType"
+                          [legend]="true">
+                  </canvas>
+                </div>
+                </div>
+                <!-- Disease Distribution Chart -->
+                <div style="width: 400px;">
+                  <h5 class="text-center">{{ "Patient Disease Distribution" | localize }}</h5>
+                  <div style="max-width: 500px; margin: 10px;">
+                  <canvas baseChart
+                          [datasets]="diseaseChartData"
+                          [labels]="diseaseChartLabels"
+                          [options]="diseaseChartOptions"
+                          [type]="'bar'"
+                          [legend]="true">
+                  </canvas>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  </div>
+  

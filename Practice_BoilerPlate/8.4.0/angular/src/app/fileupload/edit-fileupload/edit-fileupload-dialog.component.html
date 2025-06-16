@@ -5,7 +5,7 @@
   (ngSubmit)="update()"
 >
   <abp-modal-header
-    [title]="'EditDepartment' | localize"
+    [title]="'EditFile' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
 
@@ -26,10 +26,6 @@
         />      </div>
     </div>
   </div>
- 
-
-  
-
   <abp-modal-footer
     [cancelDisabled]="saving"
     [saveDisabled]="!editDepartmentModal.form.valid || saving"

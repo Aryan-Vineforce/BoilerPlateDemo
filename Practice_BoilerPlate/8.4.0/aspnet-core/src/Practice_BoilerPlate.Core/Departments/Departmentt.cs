@@ -1,12 +1,10 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Entities;
 using Practice_BoilerPlate.Employees;
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Practice_BoilerPlate.Departments
 {

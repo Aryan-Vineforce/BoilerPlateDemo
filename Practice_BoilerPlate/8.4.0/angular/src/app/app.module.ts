@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+// import { MultiSelectModule } from 'primeng/multiselect';
+import {MultiSelectModule} from 'primeng/multiselect';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -14,6 +16,7 @@ import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
+
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -70,6 +73,21 @@ import { EditEnrollmentDialogComponent } from './enrollment/edit-enrollment/edit
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { CreateFileuploadDialogComponent } from './fileupload/create-fileupload/create-fileupload-dialog.component';
 import { EditFileuploadDialogComponent } from './fileupload/edit-fileupload/edit-fileupload-dialog.component';
+import { BedComponent } from './bed/bed.component';
+import { CreateBedDialogComponent } from './bed/create-bed/create-bed-dialog.component';
+import { EditBedDialogComponent } from './bed/edit-bed/edit-bed-dialog.component';
+import { PatientComponent } from './patient/patient.component';
+import { EditPatientDialogComponent } from './patient/edit-patient/edit-patient-dialog.component';
+import { CreatePatientDialogComponent } from './patient/create-patient/create-patient-dialog.component';
+import { AdmissionComponent } from './admission/admission.component';
+import { CreateAdmissionDialogComponent } from './admission/create-admission/create-admission-dialog.component';
+import { EditAdmissionDialogComponent } from './admission/edit-admission/edit-admission-dialog.component';
+import { NgChartsModule } from 'ng2-charts';
+import { DealsServiceComponent } from './deals-service/deals-service.component';
+import { CreateDealDialogComponent } from './deals-service/create-deal/create-deal-dialog.component';
+import { EditDealDialogComponent } from './deals-service/edit-deal/edit-deal-dialog.component';
+// NGXS
+
 
 
 @NgModule({
@@ -131,7 +149,18 @@ import { EditFileuploadDialogComponent } from './fileupload/edit-fileupload/edit
         FileuploadComponent,
         CreateFileuploadDialogComponent,
         EditFileuploadDialogComponent,
-    
+        BedComponent,
+        CreateBedDialogComponent,
+        EditBedDialogComponent,
+        PatientComponent,
+        EditPatientDialogComponent,
+        CreatePatientDialogComponent,
+        AdmissionComponent,
+        CreateAdmissionDialogComponent,
+        EditAdmissionDialogComponent,
+        DealsServiceComponent,
+        CreateDealDialogComponent,
+        EditDealDialogComponent,
       
       
      
@@ -140,6 +169,7 @@ import { EditFileuploadDialogComponent } from './fileupload/edit-fileupload/edit
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MultiSelectModule,
         HttpClientModule,
         HttpClientJsonpModule,
         ModalModule.forChild(),
@@ -150,10 +180,15 @@ import { EditFileuploadDialogComponent } from './fileupload/edit-fileupload/edit
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
+        NgChartsModule
+ 
+        
     ],
     providers: [
         DepartmentServiceProxy,
         EmployeeServiceProxy,
+
+
     ]
 })
 export class AppModule {}

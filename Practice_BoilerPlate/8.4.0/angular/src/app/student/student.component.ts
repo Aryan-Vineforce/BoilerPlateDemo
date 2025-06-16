@@ -30,6 +30,7 @@ class PagedStudentsRequestDto extends PagedRequestDto {
 export class StudentComponent extends PagedListingComponentBase<GetStudentDto> {
   students: GetStudentDto[] = [];
   keyword = "";
+  sorting= "name asc"
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
@@ -71,7 +72,11 @@ export class StudentComponent extends PagedListingComponentBase<GetStudentDto> {
     });
   }
   
-
+  changeSorting(field: string): void {
+    const isAsc = this.sorting === `${field} asc`;
+    this.sorting = isAsc ? `${field} desc` : `${field} asc`;
+    this.refresh();
+  }
 
   clearFilters(): void {
     this.keyword = "";
@@ -92,7 +97,7 @@ export class StudentComponent extends PagedListingComponentBase<GetStudentDto> {
     this._studentService
       .getAll(
         request.keyword,
-      undefined,              
+      this.sorting,              
       request.skipCount,
       request.maxResultCount
       )

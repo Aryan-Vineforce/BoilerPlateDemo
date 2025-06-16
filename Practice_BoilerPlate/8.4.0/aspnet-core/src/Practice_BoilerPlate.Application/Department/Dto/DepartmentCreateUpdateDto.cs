@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Practice_BoilerPlate.Department.Dto
 {
-    public class DepartmentCreateUpdateDto : EntityDto<int?>
+    public class DepartmentCreateUpdateDto : Entity<int?>
     {
 
         //public int TenantId { get; set; }

@@ -54,25 +54,25 @@ namespace Practice_BoilerPlate.Web.Host.Startup
 
         /* This method is needed to authorize SignalR javascript client.
          * SignalR can not send authorization header. So, we are getting it from query string as an encrypted text. */
-        private static Task QueryStringTokenResolver(MessageReceivedContext context)
+        private static System.Threading.Tasks.Task QueryStringTokenResolver(MessageReceivedContext context)
         {
             if (!context.HttpContext.Request.Path.HasValue ||
                 !context.HttpContext.Request.Path.Value.StartsWith("/signalr"))
             {
                 // We are just looking for signalr clients
-                return Task.CompletedTask;
+                return System.Threading.Tasks.Task.CompletedTask;
             }
 
             var qsAuthToken = context.HttpContext.Request.Query["enc_auth_token"].FirstOrDefault();
             if (qsAuthToken == null)
             {
                 // Cookie value does not matches to querystring value
-                return Task.CompletedTask;
+                return System.Threading.Tasks.Task.CompletedTask;
             }
 
             // Set auth token from cookie
-            context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken);
-            return Task.CompletedTask;
+            //context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken);
+            return System.Threading.Tasks.Task.CompletedTask;
         }
     }
 }

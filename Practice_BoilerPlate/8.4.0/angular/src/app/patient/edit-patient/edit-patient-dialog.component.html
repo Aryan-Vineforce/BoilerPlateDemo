@@ -1,0 +1,121 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editStudentModal="ngForm"
+  (ngSubmit)="update()"
+
+>
+  <abp-modal-header
+    [title]="'EditPatient' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          required
+          maxlength="64"
+          [(ngModel)]="patient.name"
+          #nameModel="ngModel"
+          #nameEl
+          pattern="^[a-zA-Z\s]+$"
+          placeholder="Enter name"
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="age">
+        {{ "Age" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          name="age"
+          required
+          min="1"
+          [(ngModel)]="patient.age"
+          placeholder="Enter Age"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="gender">
+        {{ "Gender" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select
+          class="form-control"
+          id="gender"
+          name="gender"
+          required
+          [(ngModel)]="patient.gender"
+          placeholder="Select Gender"
+        >
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="disease">
+        {{ "Disease" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          id="disease"
+          name="disease"
+          required
+          maxlength="100"
+          [(ngModel)]="patient.disease"
+          pattern="^[a-zA-Z\s]+$"
+          placeholder="Enter Disease"        />
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="doctor">
+        {{ "Doctor" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          id="doctor"
+          name="doctor"
+          required
+          maxlength="100"
+          [(ngModel)]="patient.doctor"
+          pattern="^[a-zA-Z\s]+$"
+          placeholder="Enter Doctor"
+        />
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editStudentModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+    (onSaveClick)="update()"  
+  ></abp-modal-footer>
+</form>

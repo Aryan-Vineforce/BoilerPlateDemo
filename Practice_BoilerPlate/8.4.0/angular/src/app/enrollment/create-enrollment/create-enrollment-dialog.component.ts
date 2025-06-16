@@ -8,13 +8,16 @@ import { CourseServiceProxy, EnrollmentCreateUpdateDto, EnrollmentServiceProxy, 
 @Component({
   selector: 'app-create-enrollment-dialog',
   templateUrl: './create-enrollment-dialog.component.html',
-  styleUrls: ['./create-enrollment-dialog.component.css']
+  styleUrls: ['./create-enrollment-dialog.component.css'],
+  
 })
 export class CreateEnrollmentDialogComponent  extends AppComponentBase implements OnInit {
   saving = false;
   courses: GetCourseDto[] = [];
   students: GetStudentDto[] = [];
   enrollment: EnrollmentCreateUpdateDto = new EnrollmentCreateUpdateDto();
+
+
 
   @Output() onSave = new EventEmitter<void>();
 
@@ -31,6 +34,7 @@ export class CreateEnrollmentDialogComponent  extends AppComponentBase implement
   ngOnInit(): void {
     this.loadCourses();
     this.loadStudents();
+    this.enrollment.courseIds = [];
   }
 
   loadCourses(): void {

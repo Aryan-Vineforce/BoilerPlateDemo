@@ -1,0 +1,109 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editAdmissionForm="ngForm"
+  (ngSubmit)="update()"
+>
+  <abp-modal-header
+    [title]="'EditAdmission' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+
+  <div class="modal-body">
+    <!-- Patient Dropdown -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="patientId">
+        {{ "Patient" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select
+          class="form-control"
+          id="patientId"
+          name="patientId"
+          required
+          [(ngModel)]="admission.patientId"
+        >
+          <option *ngFor="let patient of patients" [value]="patient.id">
+            {{ patient.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Bed Dropdown -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="bedId">
+        {{ "Bed" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select
+          class="form-control"
+          id="bedId"
+          name="bedId"
+          required
+          [(ngModel)]="admission.bedId"
+        >
+          <option *ngFor="let bed of beds" [value]="bed.id">
+            {{ bed.bedNumber }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Admit Date -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="admitDate">
+        {{ "AdmitDate" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="date"
+          class="form-control"
+          id="admitDate"
+          name="admitDate"
+          required
+          [(ngModel)]="selectedDate"
+        />
+      </div>
+    </div>
+
+    <!-- Discharge Date -->
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="dischargeDate">
+        {{ "DischargeDate" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="date"
+          class="form-control"
+          id="dischargeDate"
+          name="dischargeDate"
+          [(ngModel)]="selectedDatee"
+        />
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="notes">
+        {{ "Notes" | localize }}
+      </label>
+      <div class="col-md-9">
+        <textarea
+          class="form-control"
+          id="notes"
+          name="notes"
+          rows="3"
+          [(ngModel)]="admission.notes"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editAdmissionForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+    (onSaveClick)="update()"
+  ></abp-modal-footer>
+</form>

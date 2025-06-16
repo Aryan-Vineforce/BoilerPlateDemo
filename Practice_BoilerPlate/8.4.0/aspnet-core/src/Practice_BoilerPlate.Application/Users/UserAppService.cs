@@ -94,14 +94,14 @@ namespace Practice_BoilerPlate.Users
             return await GetAsync(input);
         }
 
-        public override async Task DeleteAsync(EntityDto<long> input)
+        public override async System.Threading.Tasks.Task DeleteAsync(EntityDto<long> input)
         {
             var user = await _userManager.GetUserByIdAsync(input.Id);
             await _userManager.DeleteAsync(user);
         }
 
         [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
-        public async Task Activate(EntityDto<long> user)
+        public async System.Threading.Tasks.Task Activate(EntityDto<long> user)
         {
             await Repository.UpdateAsync(user.Id, async (entity) =>
             {
@@ -110,7 +110,7 @@ namespace Practice_BoilerPlate.Users
         }
 
         [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
-        public async Task DeActivate(EntityDto<long> user)
+        public async System.Threading.Tasks.Task DeActivate(EntityDto<long> user)
         {
             await Repository.UpdateAsync(user.Id, async (entity) =>
             {
@@ -124,7 +124,7 @@ namespace Practice_BoilerPlate.Users
             return new ListResultDto<RoleDto>(ObjectMapper.Map<List<RoleDto>>(roles));
         }
 
-        public async Task ChangeLanguage(ChangeUserLanguageDto input)
+        public async System.Threading.Tasks.Task ChangeLanguage(ChangeUserLanguageDto input)
         {
             await SettingManager.ChangeSettingForUserAsync(
                 AbpSession.ToUserIdentifier(),

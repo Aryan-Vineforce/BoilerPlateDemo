@@ -14,7 +14,7 @@ namespace Practice_BoilerPlate.Enrollments.Dto
  
         public int StudentId { get; set; }
 
-        public int CourseId { get; set; }
+        public List<int> CourseIds { get; set; }
         public DateTime EnrollmentDate { get; set; }
     }
 }

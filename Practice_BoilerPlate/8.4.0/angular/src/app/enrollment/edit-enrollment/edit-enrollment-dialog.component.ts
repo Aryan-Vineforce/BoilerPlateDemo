@@ -31,6 +31,7 @@ export class EditEnrollmentDialogComponent extends AppComponentBase implements O
   ngOnInit(): void {
     this.loadCourses();
     this.loadStudents();
+    this.enrollment.courseIds = this.enrollment.courseIds || [];
   }
 
   loadCourses(): void {

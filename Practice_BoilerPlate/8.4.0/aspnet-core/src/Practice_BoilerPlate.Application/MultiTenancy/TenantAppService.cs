@@ -106,7 +106,7 @@ namespace Practice_BoilerPlate.MultiTenancy
             entity.IsActive = updateInput.IsActive;
         }
 
-        public override async Task DeleteAsync(EntityDto<int> input)
+        public override async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             CheckDeletePermission();
 

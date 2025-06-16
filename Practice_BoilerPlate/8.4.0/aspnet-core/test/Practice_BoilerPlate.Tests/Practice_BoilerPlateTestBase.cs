@@ -62,7 +62,7 @@ namespace Practice_BoilerPlate.Tests
             UsingDbContext(AbpSession.TenantId, action);
         }
 
-        protected Task UsingDbContextAsync(Func<Practice_BoilerPlateDbContext, Task> action)
+        protected System.Threading.Tasks.Task UsingDbContextAsync(Func<Practice_BoilerPlateDbContext, System.Threading.Tasks.Task> action)
         {
             return UsingDbContextAsync(AbpSession.TenantId, action);
         }
@@ -89,7 +89,7 @@ namespace Practice_BoilerPlate.Tests
             }
         }
 
-        protected async Task UsingDbContextAsync(int? tenantId, Func<Practice_BoilerPlateDbContext, Task> action)
+        protected async System.Threading.Tasks.Task UsingDbContextAsync(int? tenantId, Func<Practice_BoilerPlateDbContext, System.Threading.Tasks.Task> action)
         {
             using (UsingTenantId(tenantId))
             {

@@ -13,6 +13,11 @@ using Practice_BoilerPlate.Subjects;
 using Practice_BoilerPlate.TeacherSubjects;
 using Practice_BoilerPlate.Enrollments;
 using Practice_BoilerPlate.FileUploads;
+using BoilerPlate_New.Beds;
+using Practice_BoilerPlate.Patients;
+using Practice_BoilerPlate.Addmissions;
+using Practice_BoilerPlate.Deals;
+using Practice_BoilerPlate.Task;
 
 namespace Practice_BoilerPlate.EntityFrameworkCore
 {
@@ -34,6 +39,13 @@ namespace Practice_BoilerPlate.EntityFrameworkCore
         public DbSet<TeacherSubject> TeacherSubjects { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<FileUpload> FileUploads { get; set; }
+        public DbSet<Bed> Beds { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Addmisson> Addmissions { get; set; }
+        public DbSet<Deal> Deals { get; set; }
+        public DbSet<Task_Item> TasksItems { get; set; }
+
+
 
     }
 }

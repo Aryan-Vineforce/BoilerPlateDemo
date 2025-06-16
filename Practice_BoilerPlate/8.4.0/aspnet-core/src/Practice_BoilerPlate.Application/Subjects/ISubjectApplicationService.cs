@@ -9,9 +9,9 @@ namespace Practice_BoilerPlate.Subjects
     public interface ISubjectApplicationService:IApplicationService
     {
         Task<PagedResultDto<GetSubjectDto>> GetAll(GetAllAccountsInput getAllAccountsInput);
-        Task CreateAsync(CreateSubjectDto input);
-        Task UpdateAsync(UpdateSubjectDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(CreateSubjectDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateSubjectDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
 
     }
 }

@@ -10,27 +10,27 @@
   ></abp-modal-header>
 
   <div class="modal-body">
-    <!-- Teacher Dropdown -->
+    <!-- Courses Multi-Select Dropdown -->
     <div class="form-group row required">
-      <label class="col-md-3 col-form-label" for="CourseId">
-        {{ "Course" | localize }}
+      <label class="col-md-3 col-form-label" for="courseIds">
+        {{ "Courses" | localize }}
       </label>
       <div class="col-md-9">
-        <select
-          class="form-control"
-          id="courseId"
-          name="courseId"
-          required
-          [(ngModel)]="enrollment.courseId"
+        <p-multiSelect
+          [options]="courses"
+          [(ngModel)]="enrollment.courseIds"
+          optionLabel="name"
+          optionValue="id"
+          display="chip"
+          defaultLabel="Select Courses"
+          name="courseIds"
+          class="w-100"
         >
-          <option *ngFor="let course of courses" [value]="course.id">
-            {{ course.name }}
-          </option>
-        </select>
+        </p-multiSelect>
       </div>
     </div>
 
-    <!-- Subject Dropdown -->
+    <!-- Student Dropdown -->
     <div class="form-group row required">
       <label class="col-md-3 col-form-label" for="StudentId">
         {{ "Student" | localize }}
@@ -55,6 +55,6 @@
     [cancelDisabled]="saving"
     [saveDisabled]="!editenrollmentModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"
-    (onSaveClick)="update()"  
+    (onSaveClick)="update()"
   ></abp-modal-footer>
 </form>

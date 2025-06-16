@@ -16,7 +16,7 @@ namespace Practice_BoilerPlate.Subjects.Dto
             _repositorysubject = repositorysubject;
         }
 
-        public async Task CreateAsync(CreateSubjectDto input)
+        public async System.Threading.Tasks.Task CreateAsync(CreateSubjectDto input)
         {
             var subejct = new Subject
             {
@@ -31,7 +31,7 @@ namespace Practice_BoilerPlate.Subjects.Dto
         }
 
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _repositorysubject.DeleteAsync(input.Id);
         }
@@ -65,7 +65,7 @@ namespace Practice_BoilerPlate.Subjects.Dto
                 result
                 );
         }
-        public async Task UpdateAsync(UpdateSubjectDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(UpdateSubjectDto input)
         {
             var employees = await _repositorysubject
      .GetAllIncluding(e => e.Course)

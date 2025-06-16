@@ -13,8 +13,8 @@ namespace Practice_BoilerPlate.Courses
     public interface ICourseApplicationService:IApplicationService
     {
         Task<PagedResultDto<GetCourseDto>> GetAll(GetAllAccountsInput getAllAccountsInput);
-        Task CreateAsync(CreateCourseDto input);
-        Task UpdateAsync(UpdateCourseDto input);
-        Task DeleteAsync(EntityDto<int> input); //input is just an object that holds an int Id.
+        System.Threading.Tasks.Task CreateAsync(CreateCourseDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateCourseDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input); //input is just an object that holds an int Id.
     }
 }

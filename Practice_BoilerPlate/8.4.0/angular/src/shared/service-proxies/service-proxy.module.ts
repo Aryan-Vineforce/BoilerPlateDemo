@@ -7,12 +7,17 @@ import * as ApiServiceProxies from './service-proxies';
 @NgModule({
     providers: [
         ApiServiceProxies.StudentServiceProxy ,
+        ApiServiceProxies.BedServiceProxy ,
         ApiServiceProxies.SubejctServiceProxy ,
+        ApiServiceProxies.DealWithTasksServiceProxy ,
+        ApiServiceProxies.BedStatusServiceProxy ,
+        ApiServiceProxies.AdmissionsServiceProxy ,
+        ApiServiceProxies.PatientServiceProxy ,
         ApiServiceProxies.TeacherSubjectServiceProxy ,
         ApiServiceProxies.EnrollmentServiceProxy ,
         ApiServiceProxies.TeacherServiceProxy,
         ApiServiceProxies.AddressServiceProxy,
-        ApiServiceProxies. EmployeeServiceProxy,
+        ApiServiceProxies.EmployeeServiceProxy,
         ApiServiceProxies.DepartmentServiceProxy,
         ApiServiceProxies.FileServiceProxy,
         ApiServiceProxies.CourseServiceProxy,

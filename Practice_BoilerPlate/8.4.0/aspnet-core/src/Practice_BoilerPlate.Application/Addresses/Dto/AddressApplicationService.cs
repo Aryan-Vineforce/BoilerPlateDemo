@@ -20,7 +20,7 @@ namespace Practice_BoilerPlate.Addresses.Dto
             _repositoryaddress = repositoryaddress_;
         }
 
-        public async Task CreateAsync(CreateAddressDto input)
+        public async System.Threading.Tasks.Task CreateAsync(CreateAddressDto input)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Practice_BoilerPlate.Addresses.Dto
 
         }
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _repositoryaddress.DeleteAsync(input.Id);
         }
@@ -82,7 +82,7 @@ namespace Practice_BoilerPlate.Addresses.Dto
           result);
         }
 
-        public async Task UpdateAsync(UpdateAddressDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(UpdateAddressDto input)
         {
             var address = await _repositoryaddress.GetAsync(input.Id);
             address.Id = input.Id;

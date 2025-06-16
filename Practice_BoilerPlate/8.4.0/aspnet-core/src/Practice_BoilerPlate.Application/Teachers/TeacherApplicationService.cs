@@ -22,7 +22,7 @@ namespace Practice_BoilerPlate.Teachers
             _repositoryteacher = repository;
         }
 
-        public async Task CreateAsync(TeacherCreateDto input)
+        public async System.Threading.Tasks.Task CreateAsync(TeacherCreateDto input)
         {
             int lastNumber = 1000;
 
@@ -56,7 +56,7 @@ namespace Practice_BoilerPlate.Teachers
         }
 
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _repositoryteacher.DeleteAsync(input.Id);
         }
@@ -90,7 +90,7 @@ namespace Practice_BoilerPlate.Teachers
         }
 
 
-        public async Task UpdateAsync(TeacherUpdateDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(TeacherUpdateDto input)
         {
             var teacher = await _repositoryteacher.GetAsync(input.Id);
             teacher.Name = input.Name;

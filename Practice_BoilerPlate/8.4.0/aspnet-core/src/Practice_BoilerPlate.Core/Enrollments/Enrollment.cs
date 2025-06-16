@@ -21,7 +21,7 @@ namespace Practice_BoilerPlate.Enrollments
 
         public Course Course { get; set; }
 
-        public DateTime EnrollmentDate { get; set; }
+  
 
         
     }

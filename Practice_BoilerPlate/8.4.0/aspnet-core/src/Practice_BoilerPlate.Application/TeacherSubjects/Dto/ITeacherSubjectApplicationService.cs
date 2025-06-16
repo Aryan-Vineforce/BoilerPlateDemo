@@ -14,8 +14,8 @@ namespace Practice_BoilerPlate.TeacherSubjects.Dto
     public interface ITeacherSubjectApplicationService :IApplicationService
     {
         Task<PagedResultDto<TeacherSubjectGetDto>> GetAll(GetAllAccountsInput getAllAccountInput);
-        Task CreateAsync(TeacherSubjectCreateUpdateDto input);
-        Task UpdateAsync(TeacherSubjectCreateUpdateDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(TeacherSubjectCreateUpdateDto input);
+        System.Threading.Tasks.Task UpdateAsync(TeacherSubjectCreateUpdateDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

@@ -1,0 +1,92 @@
+<div [@routerTransition]>
+  <!-- Header -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1>{{ "Deals" | localize }}</h1>
+        </div>
+        <div class="col-6 text-right">
+          <button class="btn bg-blue" (click)="createDeal()">
+            <i class="fa fa-plus-square"></i>
+            {{ "Create New Deal" | localize }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deals Table -->
+  <section class="content px-2">
+    <div class="container-fluid">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="bg-light">
+            <tr>
+              <th>{{ "Deal Name" | localize }}</th>
+              <th>{{ "Deal Date" | localize }}</th>
+              <th style="width: 100px;">{{ "Actions" | localize }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let deal of dealsWithTasks">
+              <!-- Row: Deal Summary -->
+              <tr (click)="deal.expanded = !deal.expanded" style="cursor: pointer;">
+                <td>
+                  {{ deal.dealName }}
+                  <i class="ml-2" [ngClass]="deal.expanded ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+                </td>
+                <td>{{ deal.date | date: 'yyyy-MM-dd' }}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm m-1" (click)="delete(deal)">
+                    <i class="fas fa-trash"></i> {{ "Delete" | localize }}
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Row: Nested Task Table -->
+              <tr *ngIf="deal.expanded">
+                <td colspan="3">
+                  <table class="table table-sm table-striped table-bordered mb-0">
+                    <thead class="bg-secondary text-white">
+                      <tr>
+                        <th>{{ "TaskNo" | localize }}</th>
+                        <th>{{ "Task Name" | localize }}</th>
+                        <th>{{ "Date From" | localize }}</th>
+                        <th>{{ "To Date" | localize }}</th>
+                        <th>{{ "Description" | localize }}</th>
+                        <th style="width: 160px;">{{ "Actions" | localize }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let task of deal.tasks">
+                        <td>{{ task.taskNo }}</td> <!-- Display only -->
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.dateFrom | date: 'yyyy-MM-dd' }}</td>
+                        <td>{{ task.toDate | date: 'yyyy-MM-dd' }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>
+                          <button class="btn btn-secondary btn-sm m-1" (click)="editTask(deal)">
+                            <i class="fas fa-edit"></i> {{ "Edit" | localize }}
+                          </button>
+                          <button class="btn btn-danger btn-sm m-1" (click)="deleteTask(task)">
+                            <i class="fas fa-trash"></i> {{ "Delete" | localize }}
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="deal.tasks.length === 0">
+                        <td colspan="6" class="text-center text-muted">
+                          {{ "NoTasksAvailable" | localize }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

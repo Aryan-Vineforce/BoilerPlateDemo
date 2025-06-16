@@ -94,14 +94,94 @@
                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
                             <thead class="bg-light">
                                 <tr>
-                                    <th>{{ "Name" | localize }}</th>
-                                     <th>{{ "RollNumber" | localize }}</th>
-                                    <th>{{ "Age" | localize }}</th>
-                                    <th>{{ "DOB" | localize }}</th>
-                                    <th>{{ "Gender" | localize }}</th>
-                                    <th>{{ "Email" | localize }}</th>
-                                    <th>{{ "PhoneNumber" | localize }}</th>
-                                    <th>{{ "IsActive" | localize }}</th>
+                                    <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "Name" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "RollNumber" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "Age" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "Dob" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "Gender" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "Email" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "phoneNumber" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
+                                      <th (click)="changeSorting('name')" style="cursor: pointer;">
+                                        {{ "IsActive" | localize }}
+                                        <i
+                                          class="ml-1 fas"
+                                          [ngClass]="{
+                                            'fa-arrow-up text-primary': sorting === 'name asc',
+                                            'fa-arrow-down text-primary': sorting === 'name desc',
+                                            'fa-sort text-muted': sorting !== 'name asc' && sorting !== 'name desc'
+                                          }"
+                                        ></i>
+                                      </th>
                                     <th style="width: 310px;">{{ "Actions" | localize }}</th> 
                                 </tr>
                             </thead>

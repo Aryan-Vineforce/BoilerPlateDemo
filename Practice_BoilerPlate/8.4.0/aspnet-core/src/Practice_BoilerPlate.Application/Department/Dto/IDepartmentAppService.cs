@@ -12,8 +12,8 @@ namespace Practice_BoilerPlate.Department.Dto
     public interface IDepartmentAppService
     {
         Task<PagedResultDto<GetDepartmentDto>> GetAll(GetAllAccountsInput input);
-        Task CreateAsync(DepartmentCreateUpdateDto input);
-        Task UpdateAsync(UpdateDepartmentDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(DepartmentCreateUpdateDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateDepartmentDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

@@ -12,8 +12,8 @@ namespace Practice_BoilerPlate.Addresses.Dto
     public interface IAddressApplicationService:IApplicationService
     {
         Task<PagedResultDto<GetAddressDto>> GetAll(GetAllAccountsInput getAllAccountsInput);
-        Task CreateAsync(CreateAddressDto input);
-        Task UpdateAsync(UpdateAddressDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(CreateAddressDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateAddressDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

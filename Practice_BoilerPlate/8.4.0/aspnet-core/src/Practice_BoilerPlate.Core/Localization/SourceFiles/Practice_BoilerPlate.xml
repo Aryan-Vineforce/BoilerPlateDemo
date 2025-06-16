@@ -1,11 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+	  <text name="CreateNewCourse" value="Create New Course" />
+	  <text name="EditCourse" value="Edit Course" />
+	  <text name="CreateNewSubject" value="Create New Subject" />
+	  <text name="EditSubject" value="Edit Subject" />
 	  <text name="CreateNewEnrollment" value="Create New Enrollment" />
+	  <text name="CreateNewBed" value="Create New Bed" />
+	  <text name="EditBed" value="Edit Bed" />
+	  <text name="CreateNewPatient" value="Create New Patient" />
+	  <text name="EditPatient" value="Edit Patient" />
+	  <text name="CreateNewAdmission" value="Create New Admission" />
+	  <text name="EditAdmission" value="Edit Admission" />
 	  <text name="CreateTeacherSubject" value="Create Teacher Subject" />
+	  <text name="BedStatusChart" value="Bed Status Chart" />
+	  <text name="PatientList" value="Patient List" />
+	  <text name="GenderChart" value="Gender Chart" />
+	  <text name="BedList" value="Bed List" />
+	  <text name="CreateNewDeal" value="Create New Deal" />
+	  <text name="EditDeal" value="Edit Deal" />
+	 
+	  <!--<text name="EditSubject" value="Edit Subject" />-->
 	 <text name="CreateNewStudent" value="Create New Student" />
 	 <text name="CreateNewEmployee" value="Create New Employee" />
 	 <text name="CreateNewDepartment" value="Create New Department" />
+	 <text name="EditDepartment" value="Edit Department" />
+	 <text name="CreateNewTeacher" value="Create New Teacher" />
+	 <text name="EditTeacher" value="Edit Teacher" />
+	 <text name="UploadFile" value="Upload File" />
+	 <text name="EditFile" value="Edit File" />
     <text name="HomePage" value="Home page" />
     <text name="About" value="About" />
     <text name="WelcomeMessage" value="Welcome to Practice_BoilerPlate!" />

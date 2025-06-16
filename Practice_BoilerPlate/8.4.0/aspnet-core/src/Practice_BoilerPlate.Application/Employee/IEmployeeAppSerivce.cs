@@ -13,8 +13,8 @@ namespace Practice_BoilerPlate.Employee
     public interface IEmployeeAppSerivce:IApplicationService
     {
         Task<PagedResultDto<GetEmployeeDto>> GetAll(GetAllAccountsInput getAllAccountsInput);
-       Task CreateAsync(CreateUpdateEmployeDto input);
-        Task UpdateAsync(UpdateEmployeeDto input);
-       Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(CreateUpdateEmployeDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateEmployeeDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

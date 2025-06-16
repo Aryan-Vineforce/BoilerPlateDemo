@@ -19,7 +19,7 @@ namespace Practice_BoilerPlate.Employee
         {
             _employeeRepository = repositoryEmployee;
         }
-        public async Task CreateAsync(CreateUpdateEmployeDto input)
+        public async System.Threading.Tasks.Task CreateAsync(CreateUpdateEmployeDto input)
             {
             var employee = new Employeee
             {
@@ -37,7 +37,7 @@ namespace Practice_BoilerPlate.Employee
                 };
             await _employeeRepository.InsertAsync(employee);
         }
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _employeeRepository.DeleteAsync(input.Id);
         }
@@ -97,7 +97,7 @@ namespace Practice_BoilerPlate.Employee
 
 
 
-        public async Task UpdateAsync(UpdateEmployeeDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(UpdateEmployeeDto input)
         {
             var employee = await _employeeRepository.FirstOrDefaultAsync(input.Id);
             if (employee == null)

@@ -15,7 +15,7 @@ namespace Practice_BoilerPlate.Tests.Sessions
         }
 
         [MultiTenantFact]
-        public async Task Should_Get_Current_User_When_Logged_In_As_Host()
+        public async System.Threading.Tasks.Task Should_Get_Current_User_When_Logged_In_As_Host()
         {
             // Arrange
             LoginAsHostAdmin();
@@ -33,7 +33,7 @@ namespace Practice_BoilerPlate.Tests.Sessions
         }
 
         [Fact]
-        public async Task Should_Get_Current_User_And_Tenant_When_Logged_In_As_Tenant()
+        public async System.Threading.Tasks.Task Should_Get_Current_User_And_Tenant_When_Logged_In_As_Tenant()
         {
             // Act
             var output = await _sessionAppService.GetCurrentLoginInformations();

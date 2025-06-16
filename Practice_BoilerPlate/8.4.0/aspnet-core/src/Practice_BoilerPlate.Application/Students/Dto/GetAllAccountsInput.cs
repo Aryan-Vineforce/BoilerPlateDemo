@@ -11,5 +11,7 @@ namespace Practice_BoilerPlate.Students.Dto
 
     {
         public string Keyword { get; set; }
+
+   
     }
 }

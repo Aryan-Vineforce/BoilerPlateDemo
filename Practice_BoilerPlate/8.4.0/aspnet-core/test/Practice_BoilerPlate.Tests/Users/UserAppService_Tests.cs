@@ -18,7 +18,7 @@ namespace Practice_BoilerPlate.Tests.Users
         }
 
         [Fact]
-        public async Task GetUsers_Test()
+        public async System.Threading.Tasks.Task GetUsers_Test()
         {
             // Act
             var output = await _userAppService.GetAllAsync(new PagedUserResultRequestDto{MaxResultCount=20, SkipCount=0} );
@@ -28,7 +28,9 @@ namespace Practice_BoilerPlate.Tests.Users
         }
 
         [Fact]
-        public async Task CreateUser_Test()
+
+
+        public async System.Threading.Tasks.Task CreateUser_Test()
         {
             // Act
             await _userAppService.CreateAsync(

@@ -20,6 +20,7 @@ import { EditDepartmentDialogComponent } from "./edit-department/edit-department
 
 class PagedDepartmentsRequestDto extends PagedRequestDto {
   keyword: string;
+  sorting: string;
 }
 
 @Component({
@@ -32,6 +33,7 @@ export class DepartmentComponent extends PagedListingComponentBase<GetDepartment
   departments: GetDepartmentDto[] = [];
   isActive: boolean | null; 
   keyword = "";
+  sorting = "name asc";
   advancedFiltersVisible = false;
 
   constructor(
@@ -74,6 +76,7 @@ export class DepartmentComponent extends PagedListingComponentBase<GetDepartment
 
   clearFilters(): void {
     this.keyword = "";
+    this.sorting = "name asc";
     this.getDataPage(1);
   }
 
@@ -83,11 +86,12 @@ export class DepartmentComponent extends PagedListingComponentBase<GetDepartment
     finishedCallback: Function
   ): void {
     request.keyword = this.keyword;
+    request.sorting = this.sorting;
 
     this._departmentService//api call
       .getAll(
         request.keyword,
-        undefined,
+        request.sorting, 
         request.skipCount,
         request.maxResultCount
       )
@@ -96,6 +100,11 @@ export class DepartmentComponent extends PagedListingComponentBase<GetDepartment
         this.departments = result.items;
         this.showPaging(result, pageNumber);
       });
+  }
+  changeSorting(field: string): void {
+    const isAsc = this.sorting === `${field} asc`;
+    this.sorting = isAsc ? `${field} desc` : `${field} asc`;
+    this.refresh();
   }
 
   protected delete(department: GetDepartmentDto): void {

@@ -8,7 +8,7 @@ namespace Practice_BoilerPlate.Configuration
     [AbpAuthorize]
     public class ConfigurationAppService : Practice_BoilerPlateAppServiceBase, IConfigurationAppService
     {
-        public async Task ChangeUiTheme(ChangeUiThemeInput input)
+        public async System.Threading.Tasks.Task ChangeUiTheme(ChangeUiThemeInput input)
         {
             await SettingManager.ChangeSettingForUserAsync(AbpSession.ToUserIdentifier(), AppSettingNames.UiTheme, input.Theme);
         }

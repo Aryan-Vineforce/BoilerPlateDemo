@@ -82,7 +82,7 @@ namespace Practice_BoilerPlate.Roles
             return MapToEntityDto(role);
         }
 
-        public override async Task DeleteAsync(EntityDto<int> input)
+        public override async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             CheckDeletePermission();
 
@@ -101,7 +101,7 @@ namespace Practice_BoilerPlate.Roles
         {
             var permissions = PermissionManager.GetAllPermissions();
 
-            return Task.FromResult(new ListResultDto<PermissionDto>(
+            return System.Threading.Tasks.Task.FromResult(new ListResultDto<PermissionDto>(
                 ObjectMapper.Map<List<PermissionDto>>(permissions).OrderBy(p => p.DisplayName).ToList()
             ));
         }

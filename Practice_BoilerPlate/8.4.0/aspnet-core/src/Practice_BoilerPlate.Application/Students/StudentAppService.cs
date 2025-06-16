@@ -8,6 +8,7 @@ using Practice_BoilerPlate.Employees;
 using Practice_BoilerPlate.Students.Dto;
 using System;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
@@ -24,7 +25,7 @@ namespace Practice_BoilerPlate.Students
             _repositoryStudent = repositoryStudent;
         }
 
-        public async Task CreateAsync(CreateStudentDto input)
+        public async System.Threading.Tasks.Task CreateAsync(CreateStudentDto input)
         {
             try
             {
@@ -86,6 +87,10 @@ namespace Practice_BoilerPlate.Students
                 s.PhoneNumber.Contains(input.Keyword)
             );
             }
+            // Sorting - default to Name if no Sorting is specified
+            query = !string.IsNullOrWhiteSpace(input.Sorting)
+                ? query.OrderBy(input.Sorting)
+                : query.OrderBy(d => d.Name);
             var students = await query.ToListAsync();
 
 
@@ -116,7 +121,7 @@ namespace Practice_BoilerPlate.Students
           result);
         }
 
-        public async Task UpdateAsync(UpdateStudentDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(UpdateStudentDto input)
         {
             var student = await _repositoryStudent.GetAsync(input.Id);
             student.Id = input.Id;
@@ -131,7 +136,7 @@ namespace Practice_BoilerPlate.Students
 
             await _repositoryStudent.UpdateAsync(student);
         }
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _repositoryStudent.DeleteAsync(input.Id);
         }

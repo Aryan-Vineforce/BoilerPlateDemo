@@ -22,7 +22,7 @@ namespace Practice_BoilerPlate.FileUploads
             _filerepository = filerepository;
         }
 
-        public async Task DeleteAsync(EntityDto<int> input)
+        public async System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input)
         {
             await _filerepository.DeleteAsync(input.Id);
         }
@@ -62,7 +62,7 @@ namespace Practice_BoilerPlate.FileUploads
             }
         }
 
-        public async Task UpdateAsync(FileUpdateDto input)
+        public async System.Threading.Tasks.Task UpdateAsync(FileUpdateDto input)
         {
             try
             {

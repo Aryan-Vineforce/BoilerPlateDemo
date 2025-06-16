@@ -13,7 +13,7 @@ namespace Practice_BoilerPlate.FileUploads.Dto
     {
         Task<FileUploadDto> UploadFileAsync(FileUploadDto input);
         Task<PagedResultDto<FileGetDto>> GetAll(GetAllAccountsInput input);
-        Task UpdateAsync(FileUpdateDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task UpdateAsync(FileUpdateDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

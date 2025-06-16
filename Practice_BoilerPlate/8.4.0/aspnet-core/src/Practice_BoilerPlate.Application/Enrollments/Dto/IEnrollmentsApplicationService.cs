@@ -9,8 +9,8 @@ namespace Practice_BoilerPlate.Enrollments.Dto
     public interface IEnrollmentsApplicationService:IApplicationService
     {
         Task<PagedResultDto<EnrollmentGetDto>> GetAll(GetAllAccountsInput getAllAccountInput);
-        Task CreateAsync(EnrollmentCreateUpdateDto input);
-        Task UpdateAsync(EnrollmentCreateUpdateDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(EnrollmentCreateUpdateDto input);
+        System.Threading.Tasks.Task UpdateAsync(EnrollmentCreateUpdateDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
     }
 }

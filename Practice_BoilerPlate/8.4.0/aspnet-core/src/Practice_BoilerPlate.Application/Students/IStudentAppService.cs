@@ -10,9 +10,9 @@ namespace Practice_BoilerPlate.Students
     public interface IStudentAppService: IApplicationService
     {
         Task<PagedResultDto<GetStudentDto>> GetAll(GetAllAccountsInput getAllAccountsInput);
-        Task CreateAsync(CreateStudentDto input);
-        Task UpdateAsync(UpdateStudentDto input);
-        Task DeleteAsync(EntityDto<int> input);
+        System.Threading.Tasks.Task CreateAsync(CreateStudentDto input);
+        System.Threading.Tasks.Task UpdateAsync(UpdateStudentDto input);
+        System.Threading.Tasks.Task DeleteAsync(EntityDto<int> input);
 
     }
 }
