@@ -22,6 +22,8 @@ import { BedComponent } from "./bed/bed.component";
 import { PatientComponent } from "./patient/patient.component";
 import { AdmissionComponent } from "./admission/admission.component";
 import { DealsServiceComponent } from "./deals-service/deals-service.component";
+import { CurrencyExchangeServiceServiceProxy } from "@shared/service-proxies/service-proxies";
+import { CurrencyexchangeComponent } from "./currencyexchange/currencyexchange.component";
 
 @NgModule({
   imports: [
@@ -72,6 +74,7 @@ import { DealsServiceComponent } from "./deals-service/deals-service.component";
           { path: "patient", component: PatientComponent },
           { path: "admission", component: AdmissionComponent },
           { path: "deals-service", component: DealsServiceComponent },
+          { path: "currencyexchange", component: CurrencyexchangeComponent },
         ],
       },
     ]),

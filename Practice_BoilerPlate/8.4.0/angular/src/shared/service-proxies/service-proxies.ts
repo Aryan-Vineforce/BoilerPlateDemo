@@ -1252,6 +1252,147 @@ export class CourseServiceProxy {
 }
 
 @Injectable()
+export class CurrencyExchangeServiceServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param fromCurrency (optional) 
+     * @param toCurrency (optional) 
+     * @return Success
+     */
+    getExchangeRate(fromCurrency: string | undefined, toCurrency: string | undefined): Observable<number> {
+        let url_ = this.baseUrl + "/api/services/app/CurrencyExchangeService/GetExchangeRate?";
+        if (fromCurrency === null)
+            throw new Error("The parameter 'fromCurrency' cannot be null.");
+        else if (fromCurrency !== undefined)
+            url_ += "fromCurrency=" + encodeURIComponent("" + fromCurrency) + "&";
+        if (toCurrency === null)
+            throw new Error("The parameter 'toCurrency' cannot be null.");
+        else if (toCurrency !== undefined)
+            url_ += "toCurrency=" + encodeURIComponent("" + toCurrency) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetExchangeRate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetExchangeRate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processGetExchangeRate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param fromCurrency (optional) 
+     * @param toCurrency (optional) 
+     * @param amount (optional) 
+     * @return Success
+     */
+    convertAmount(fromCurrency: string | undefined, toCurrency: string | undefined, amount: number | undefined): Observable<number> {
+        let url_ = this.baseUrl + "/api/services/app/CurrencyExchangeService/ConvertAmount?";
+        if (fromCurrency === null)
+            throw new Error("The parameter 'fromCurrency' cannot be null.");
+        else if (fromCurrency !== undefined)
+            url_ += "fromCurrency=" + encodeURIComponent("" + fromCurrency) + "&";
+        if (toCurrency === null)
+            throw new Error("The parameter 'toCurrency' cannot be null.");
+        else if (toCurrency !== undefined)
+            url_ += "toCurrency=" + encodeURIComponent("" + toCurrency) + "&";
+        if (amount === null)
+            throw new Error("The parameter 'amount' cannot be null.");
+        else if (amount !== undefined)
+            url_ += "amount=" + encodeURIComponent("" + amount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processConvertAmount(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processConvertAmount(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processConvertAmount(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
 export class DealWithTasksServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
