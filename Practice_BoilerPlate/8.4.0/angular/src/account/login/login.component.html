@@ -75,9 +75,11 @@
       </div>
     </div>
   </form>
-  <p *ngIf="isSelfRegistrationAllowed" class="mb-1">
-    <a [routerLink]="['../register']">
-      <i class="fa fa-plus-circle"></i> {{ "Register" | localize }}
-    </a>
-  </p>
+<p *ngIf="isSelfRegistrationAllowed" class="mb-1 text-center">
+  <button class="btn btn-outline-primary" [routerLink]="['/account/select-edition']">
+    <i class="fa fa-plus-circle"></i> {{ "Register" | localize }}
+  </button>
+</p>
+
+  
 </div>
