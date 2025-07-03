@@ -1,13 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.UI;
-
-using Stripe;
 using Microsoft.Extensions.Configuration;
+using Stripe;
 using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Practice_BoilerPlate.Stripe

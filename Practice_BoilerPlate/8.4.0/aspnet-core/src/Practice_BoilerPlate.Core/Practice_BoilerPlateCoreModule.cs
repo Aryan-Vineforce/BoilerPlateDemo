@@ -1,4 +1,6 @@
-﻿using Abp.Localization;
+﻿using Abp.Application.Features;
+using Abp.Configuration.Startup;
+using Abp.Localization;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Runtime.Security;
@@ -8,6 +10,7 @@ using Abp.Zero.Configuration;
 using Practice_BoilerPlate.Authorization.Roles;
 using Practice_BoilerPlate.Authorization.Users;
 using Practice_BoilerPlate.Configuration;
+using Practice_BoilerPlate.Features;
 using Practice_BoilerPlate.Localization;
 using Practice_BoilerPlate.MultiTenancy;
 using Practice_BoilerPlate.Timing;
@@ -35,12 +38,17 @@ namespace Practice_BoilerPlate
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
-            
+
             Configuration.Localization.Languages.Add(new LanguageInfo("fa", "فارسی", "famfamfam-flags ir"));
-            
+
             Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = Practice_BoilerPlateConsts.DefaultPassPhrase;
             SimpleStringCipher.DefaultPassPhrase = Practice_BoilerPlateConsts.DefaultPassPhrase;
+
+            // ✅ Add these two lines:
+            Configuration.Features.Providers.Add<AppFeatureProvider>();
+            Configuration.ReplaceService<IFeatureValueStore, FeatureValueStore>();
         }
+
 
         public override void Initialize()
         {

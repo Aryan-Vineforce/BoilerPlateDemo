@@ -3427,69 +3427,69 @@ export class SessionServiceProxy {
     }
 }
 
-@Injectable()
-export class StripeServiceProxy {
-    private http: HttpClient;
-    private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+// @Injectable()
+// export class StripeServiceProxy {
+//     private http: HttpClient;
+//     private baseUrl: string;
+//     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
-    }
+//     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+//         this.http = http;
+//         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+//     }
 
-    /**
-     * @param body (optional) 
-     * @return Success
-     */
-    createSession(body: StripeSessionRequest | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/stripe/create-session";
-        url_ = url_.replace(/[?&]$/, "");
+//     /**
+//      * @param body (optional) 
+//      * @return Success
+//      */
+//     createSession(body: StripeSessionRequest | undefined): Observable<void> {
+//         let url_ = this.baseUrl + "/api/stripe/create-session";
+//         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
+//         const content_ = JSON.stringify(body);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json-patch+json",
-            })
-        };
+//         let options_ : any = {
+//             body: content_,
+//             observe: "response",
+//             responseType: "blob",
+//             headers: new HttpHeaders({
+//                 "Content-Type": "application/json-patch+json",
+//             })
+//         };
 
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processCreateSession(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processCreateSession(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<void>;
-        }));
-    }
+//         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+//             return this.processCreateSession(response_);
+//         })).pipe(_observableCatch((response_: any) => {
+//             if (response_ instanceof HttpResponseBase) {
+//                 try {
+//                     return this.processCreateSession(response_ as any);
+//                 } catch (e) {
+//                     return _observableThrow(e) as any as Observable<void>;
+//                 }
+//             } else
+//                 return _observableThrow(response_) as any as Observable<void>;
+//         }));
+//     }
 
-    protected processCreateSession(response: HttpResponseBase): Observable<void> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
+//     protected processCreateSession(response: HttpResponseBase): Observable<void> {
+//         const status = response.status;
+//         const responseBlob =
+//             response instanceof HttpResponse ? response.body :
+//             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-}
+//         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+//         if (status === 200) {
+//             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+//             return _observableOf(null as any);
+//             }));
+//         } else if (status !== 200 && status !== 204) {
+//             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+//             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+//             }));
+//         }
+//         return _observableOf(null as any);
+//     }
+// }
 
 @Injectable()
 export class StripeServiceProxy {
@@ -8932,6 +8932,7 @@ export class RegisterInput implements IRegisterInput {
     emailAddress: string;
     password: string;
     captchaResponse: string | undefined;
+    plan: string | undefined;
 
     constructor(data?: IRegisterInput) {
         if (data) {
@@ -8950,6 +8951,7 @@ export class RegisterInput implements IRegisterInput {
             this.emailAddress = _data["emailAddress"];
             this.password = _data["password"];
             this.captchaResponse = _data["captchaResponse"];
+            this.plan = _data["plan"];
         }
     }
 
@@ -8968,6 +8970,7 @@ export class RegisterInput implements IRegisterInput {
         data["emailAddress"] = this.emailAddress;
         data["password"] = this.password;
         data["captchaResponse"] = this.captchaResponse;
+        data["plan"] = this.plan;
         return data;
     }
 
@@ -8986,6 +8989,7 @@ export interface IRegisterInput {
     emailAddress: string;
     password: string;
     captchaResponse: string | undefined;
+    plan: string | undefined;
 }
 
 export class RegisterOutput implements IRegisterOutput {

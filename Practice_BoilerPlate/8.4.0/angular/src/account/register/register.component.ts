@@ -28,30 +28,61 @@ export class RegisterComponent extends AppComponentBase {
     super(injector);
   }
 
-  save(): void {
-    this.saving = true;
-    this._accountService
-      .register(this.model)
-      .pipe(
-        finalize(() => {
-          this.saving = false;
-        })
-      )
-      .subscribe((result: RegisterOutput) => {
-        if (!result.canLogin) {
-          this.notify.success(this.l('SuccessfullyRegistered'));
-          this._router.navigate(['/login']);
-          return;
-        }
+  ngOnInit(): void {
+  const selected = localStorage.getItem('selectedPlan');
+  this.plan = selected || 'trial';
+  this.model.plan = this.plan;
+}
 
-        // Autheticate
-        this.saving = true;
-        this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
-        this.authService.authenticateModel.password = this.model.password;
-        this.authService.authenticate(() => {
-          this.saving = false;
-        });
+
+ save(): void {
+  this.saving = true;
+
+  // ✅ Save the selected plan from localStorage to the model
+  this.model.plan = localStorage.getItem('selectedPlan');
+
+  this._accountService
+    .register(this.model)
+    .pipe(finalize(() => (this.saving = false)))
+    .subscribe((result: RegisterOutput) => {
+      if (!result.canLogin) {
+        this.notify.success(this.l('SuccessfullyRegistered'));
+        this._router.navigate(['/login']);
+        return;
+      }
+
+      // ✅ Automatically authenticate
+      this.saving = true;
+      this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
+      this.authService.authenticateModel.password = this.model.password;
+      this.authService.authenticate(() => {
+        this.saving = false;
       });
-  }
-  
+    });
+}
+  //  save(): void {
+  //   this.saving = true;
+  //   this._accountService
+  //     .register(this.model)
+  //     .pipe(
+  //       finalize(() => {
+  //         this.saving = false;
+  //       })
+  //     )
+  //     .subscribe((result: RegisterOutput) => {
+  //       if (!result.canLogin) {
+  //         this.notify.success(this.l('SuccessfullyRegistered'));
+  //         this._router.navigate(['/login']);
+  //         return;
+  //       }
+
+  //       // Autheticate
+  //       this.saving = true;
+  //       this.authService.authenticateModel.userNameOrEmailAddress = this.model.userName;
+  //       this.authService.authenticateModel.password = this.model.password;
+  //       this.authService.authenticate(() => {
+  //         this.saving = false;
+  //       });
+  //     });
+  // }
 }
