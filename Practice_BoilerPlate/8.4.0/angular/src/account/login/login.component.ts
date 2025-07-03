@@ -6,15 +6,18 @@ import { AppAuthService } from '@shared/auth/app-auth.service';
 
 @Component({
   templateUrl: './login.component.html',
-  animations: [accountModuleAnimation()]
+  animations: [accountModuleAnimation()],
+   
 })
 export class LoginComponent extends AppComponentBase {
+
   submitting = false;
 
   constructor(
     injector: Injector,
     public authService: AppAuthService,
-    private _sessionService: AbpSessionService
+    private _sessionService: AbpSessionService,
+    
   ) {
     super(injector);
   }
@@ -35,4 +38,6 @@ export class LoginComponent extends AppComponentBase {
     this.submitting = true;
     this.authService.authenticate(() => (this.submitting = false));
   }
+goToSelectEdition(){}
+  
 }

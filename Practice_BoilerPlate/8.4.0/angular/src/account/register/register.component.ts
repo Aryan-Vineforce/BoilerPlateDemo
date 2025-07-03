@@ -17,6 +17,7 @@ import { AppAuthService } from '@shared/auth/app-auth.service';
 export class RegisterComponent extends AppComponentBase {
   model: RegisterInput = new RegisterInput();
   saving = false;
+   plan: string;
 
   constructor(
     injector: Injector,
@@ -52,4 +53,5 @@ export class RegisterComponent extends AppComponentBase {
         });
       });
   }
+  
 }

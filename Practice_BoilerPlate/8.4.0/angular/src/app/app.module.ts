@@ -87,6 +87,8 @@ import { DealsServiceComponent } from './deals-service/deals-service.component';
 import { CreateDealDialogComponent } from './deals-service/create-deal/create-deal-dialog.component';
 import { EditDealDialogComponent } from './deals-service/edit-deal/edit-deal-dialog.component';
 import { CurrencyexchangeComponent } from './currencyexchange/currencyexchange.component';
+import { ChatComponent } from './chat/chat.component';
+import { SelectEditionComponent } from '../account/select-edition/select-edition.component';
 // NGXS
 
 
@@ -163,6 +165,8 @@ import { CurrencyexchangeComponent } from './currencyexchange/currencyexchange.c
         CreateDealDialogComponent,
         EditDealDialogComponent,
         CurrencyexchangeComponent,
+        ChatComponent,
+        SelectEditionComponent,
       
       
      
