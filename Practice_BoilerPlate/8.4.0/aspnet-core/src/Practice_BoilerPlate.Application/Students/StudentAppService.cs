@@ -2,16 +2,11 @@
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Practice_BoilerPlate.Departments;
-using Practice_BoilerPlate.Employee.Dto;
-using Practice_BoilerPlate.Employees;
 using Practice_BoilerPlate.Students.Dto;
 using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace Practice_BoilerPlate.Students
 

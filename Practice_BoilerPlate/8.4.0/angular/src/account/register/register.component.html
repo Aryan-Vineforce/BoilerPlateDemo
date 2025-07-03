@@ -1,6 +1,9 @@
 ﻿<div [@routerTransition]>
   <h4 class="text-center mb-3">{{ "Register" | localize }}</h4>
   <form autocomplete="off" #registerForm="ngForm" (ngSubmit)="save()">
+    <div class="alert alert-info text-center">
+  Selected Plan: <strong>{{ plan | titlecase }}</strong>
+</div>
     <div class="form-group">
       <div class="input-group">
         <input

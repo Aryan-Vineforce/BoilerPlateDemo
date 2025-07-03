@@ -33,7 +33,7 @@ namespace Practice_BoilerPlate.Authorization.Accounts.Dto
 
         [DisableAuditing]
         public string CaptchaResponse { get; set; }
-
+        public string Plan { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!UserName.IsNullOrEmpty())

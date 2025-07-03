@@ -23,6 +23,7 @@
     <ProjectReference Include="..\Practice_BoilerPlate.EntityFrameworkCore\Practice_BoilerPlate.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Abp.Zero.Common" Version="8.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.12" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
     <PackageReference Include="Stripe.net" Version="48.2.0" />
