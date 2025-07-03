@@ -1,6 +1,7 @@
 export class AppConsts {
 
     static readonly tenancyNamePlaceHolderInUrl = '{TENANCY_NAME}';
+    
 
     static remoteServiceBaseUrl: string;
     static appBaseUrl: string;
@@ -19,4 +20,5 @@ export class AppConsts {
     static readonly authorization = {
         encryptedAuthTokenName: 'enc_auth_token'
     };
+     static readonly chatHubUrl: string = '/signalr/chatHub';
 }

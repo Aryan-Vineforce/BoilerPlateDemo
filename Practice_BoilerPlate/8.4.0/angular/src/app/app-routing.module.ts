@@ -24,6 +24,7 @@ import { AdmissionComponent } from "./admission/admission.component";
 import { DealsServiceComponent } from "./deals-service/deals-service.component";
 import { CurrencyExchangeServiceServiceProxy } from "@shared/service-proxies/service-proxies";
 import { CurrencyexchangeComponent } from "./currencyexchange/currencyexchange.component";
+import { ChatComponent } from "./chat/chat.component";
 
 @NgModule({
   imports: [
@@ -75,6 +76,7 @@ import { CurrencyexchangeComponent } from "./currencyexchange/currencyexchange.c
           { path: "admission", component: AdmissionComponent },
           { path: "deals-service", component: DealsServiceComponent },
           { path: "currencyexchange", component: CurrencyexchangeComponent },
+          { path: "chat", component: ChatComponent },
         ],
       },
     ]),

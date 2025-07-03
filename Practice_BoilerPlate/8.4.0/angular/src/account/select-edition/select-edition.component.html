@@ -1,0 +1,80 @@
+<div class="container py-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">Select Your Plan</h2>
+  </div>
+
+  <div class="row justify-content-center">
+    <!-- Trial Plan -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">Trial</h5>
+          <h2 class="text-primary">Free</h2>
+          <ul class="list-unstyled text-start my-4">
+                      <li>Roles – <b>Limited(5)</b></li>
+            <li>Tenants – <b>Limited(5)</b></li>
+            <li>Users – <b>Limited(5)</b></li>
+            <li>Academics – <b>Limited(5)</b></li>
+            <li>Staff (Departments, Teachers, Employee) – <b>Limited(5)</b></li>
+            <li>Students – <b>Limited(5)</b></li>
+            <li>File Upload – <b>Limited(5)</b></li>
+            <li>Hospital (Bed, Patient, Admission, Deals-Service) – <b>Limited(5)</b></li>
+            <li>Services (Deals-Service) – <b>Limited(5)</b></li>
+            <li>CurrencyExchange – <span class="text-danger">Not Available</span></li>
+            <li>Chat – <span class="text-danger">Not Available</span></li>
+          </ul>
+          <button class="btn btn-success w-100" (click)="selectPlan('trial')">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard Plan -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">Standard</h5>
+           <h2 class="text-primary">$9.99 <small class="text-muted">/mo</small></h2>
+          <ul class="list-unstyled text-start my-4">
+            <li>Roles – <b>limited(50)</b></li>
+            <li>Tenants – <b>limited(50)</b></li>
+            <li>Users – <b>limited(50)</b></li>
+            <li>Academics – <b>limited(50)</b></li>
+            <li>Staff (Departments, Teachers, Employee) – <b>limited(50)</b></li>
+            <li>Students – <b>limited(50)</b></li>
+            <li>File Upload – <b>limited(50)</b></li>
+            <li>Hospital (Bed, Patient, Admission, Deals-Service) – <b>limited(50)</b></li>
+            <li>Services (Deals-Service) – <b>limited(50)</b></li>
+            <li>CurrencyExchange –  <b>limited</b></li>
+            <li>Chat –  <b>limited</b></li>
+          </ul>
+          <button class="btn btn-primary w-100" (click)="selectPlan('standard')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Plan -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">Premium</h5>
+          <h2 class="text-primary">$29.99 <small class="text-muted">/mo</small></h2>
+          <ul class="list-unstyled text-start my-4">
+          
+            <li>Roles – <b>Unlimited</b></li>
+            <li>Tenants – <b>Unlimited</b></li>
+            <li>Users – <b>Unlimited</b></li>
+            <li>Academics – <b>Unlimited</b></li>
+            <li>Staff (Departments, Teachers, Employee) – <b>Unlimited</b></li>
+            <li>Students – <b>Unlimited</b></li>
+            <li>File Upload – <b>Unlimited</b></li>
+            <li>Hospital (Bed, Patient, Admission, Deals-Service) – <b>Unlimited</b></li>
+            <li>Services (Deals-Service) – <b>Unlimited</b></li>
+            <li>CurrencyExchange – <b>Unlimited</b></li>
+            <li>Chat – <b>Unlimited</b></li>
+          </ul>
+          <button class="btn btn-primary w-100" (click)="selectPlan('premium')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="card shadow border-0"
+     style="height: 80vh; width: 80vw; background-color: #E5DDD5; display: flex; flex-direction: column;">
+
+  <!-- Chat Header -->
+<div class="card-header d-flex align-items-center text-white px-3" style="background-color: #075E54;">
+  
+  <!-- Left Side: Profile Info -->
+  <div class="d-flex align-items-center flex-grow-1">
+    <i class="fas fa-user-circle fa-2x text-white mx-2"></i>
+    <h5 class="mb-0">{{ user }}</h5>
+  </div>
+
+  <!-- Right Side: Action Buttons -->
+  <div class="d-flex align-items-center">
+    <button class="btn btn-sm text-white me-2" style="background: transparent; border: none;">
+      <i class="fas fa-phone"></i>
+    </button>
+    <button class="btn btn-sm text-white me-2" style="background: transparent; border: none;">
+      <i class="fas fa-video"></i>
+    </button>
+ <!-- Inside a relative container like card-header -->
+<!-- Wrap inside a position-relative container like card-header -->
+<div class="position-relative">
+  <!-- 3-dot button -->
+  <button (click)="toggleOptions()" class="btn btn-sm text-white" style="background: transparent; border: none;">
+    <i class="fas fa-ellipsis-v"></i>
+  </button>
+
+  <!-- Dropdown menu -->
+  <div *ngIf="optionsVisible"
+       class="position-absolute end-0 mt-2 bg-white text-dark shadow rounded border"
+       style="min-width: 220px; z-index: 1000;">
+       
+    <a class="dropdown-item" href="#" (click)="viewContact()">Contact info</a>
+    <a class="dropdown-item" href="#" (click)="selectMessages()">Select messages</a>
+    <a class="dropdown-item" href="#" (click)="closeChat()">Close chat</a>
+    <a class="dropdown-item" href="#" (click)="mute()">Mute notifications</a>
+    <a class="dropdown-item" href="#" (click)="disappearingMessages()">Disappearing messages</a>
+    <a class="dropdown-item" href="#" (click)="clearMessages()">Clear messages</a>
+    <a class="dropdown-item text-danger" href="#" (click)="deleteChat()">Delete chat</a>
+  </div>
+</div>
+
+
+  </div>
+
+</div>
+
+
+
+  <!-- Chat Messages -->
+  <div class="card-body"
+       id="chatWindow"
+       style="flex-grow: 1; overflow-y: auto; padding: 1rem;">
+    <div *ngFor="let msg of messages"
+         class="mb-2 d-flex"
+         [ngClass]="{'justify-content-end': msg.user === user, 'justify-content-start': msg.user !== user}">
+
+      <div class="p-2"
+           [ngStyle]="{
+             'background-color': msg.user === user ? '#DCF8C6' : '#FFFFFF',
+             'color': '#303030',
+             'border-radius': '15px',
+             'max-width': '75%'
+           }">
+        <div class="fw-semibold small text-muted" *ngIf="msg.user !== user">{{ msg.user }}</div>
+
+        <div class="d-flex align-items-end justify-content-between">
+          <div class="flex-grow-1">{{ msg.message }}</div>
+          <div *ngIf="msg.user === user" class="ms-2 d-flex align-items-center m-1">
+            <ng-container [ngSwitch]="msg.status">
+              <i *ngSwitchCase="'sent'" class="fas fa-check text-muted" style="font-size: 12px;"></i>
+              <i *ngSwitchCase="'delivered'" class="fas fa-check-double text-muted" style="font-size: 12px;"></i>
+              <i *ngSwitchCase="'seen'" class="fas fa-check-double text-info" style="font-size: 12px;"></i>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+<div class="card-footer d-flex align-items-center px-2" style="background-color: #F0F0F0;">
+
+  <!-- Emoji Button -->
+  <button class="btn btn-sm text-muted me-2" style="background: transparent; border: none;">
+    <i class="far fa-smile fa-lg"></i>
+  </button>
+
+  <!-- Attachment Button -->
+  <button class="btn btn-sm text-muted me-2" style="background: transparent; border: none;">
+    <i class="fas fa-paperclip fa-lg"></i>
+  </button>
+
+  <!-- Input Field -->
+  <input type="text"
+         [(ngModel)]="message"
+         (keyup.enter)="sendMessage()"
+         class="form-control me-2"
+         placeholder="Type a message..."
+         style="border-radius: 20px;" />
+
+  <!-- Mic Button (only if message is empty) -->
+  <button *ngIf="!message" class="btn btn-sm btn-secondary" style="border-radius: 50%; width: 40px; height: 40px;">
+    <i class="fas fa-microphone"></i>
+  </button>
+
+  <!-- Send Button (only if message is not empty) -->
+  <button *ngIf="message" class="btn btn-success" (click)="sendMessage()" style="border-radius: 20px;">
+    Send
+  </button>
+</div>
+
+</div>
